@@ -2,6 +2,8 @@
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-altool)
 
+<a href="https://travis-ci.org/Shashikant86/fastlane-plugin-altool/"><img src="https://img.shields.io/travis/Shashikant86/fastlane-plugin-altool.svg" /></a>
+
 ## Getting Started
 
 This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To get started with `fastlane-plugin-altool`, add it to your project by running:
