@@ -12,15 +12,27 @@ fastlane add_plugin altool
 
 ## About altool
 
-Upload IPA to iTunes Connect using altool
+Upload IPA to iTunes Connect using altool.
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+Currently Fastlane deliver uses iTMSTransporter to upload an ipa files to iTunes Connect but there is slick way to do this using `altool`
+
+This plugin can be used for uploading generated ipa file using Gym to iTunes Connect.
+
+This plugin assume that, you already have that Fastlane setup and your details are configured as ENV variables in FASTLANE_USER and FASTLANE_PASSWORD
+
 
 ## Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
+You can configure this plaugin using
 
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
+```
+altool(
+         app_type: "ios",
+         ipa_path: "./build/Your-ipa.ipa",
+         output_format: "xml",
+     )
+```
+
 
 ## Run tests for this plugin
 
