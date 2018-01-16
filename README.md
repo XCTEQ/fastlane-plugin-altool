@@ -28,11 +28,14 @@ This plugin assume that, you already have that Fastlane setup and your details a
 You can configure this plaugin using
 
 ```
-altool(
-         app_type: "ios",
-         ipa_path: "./build/Your-ipa.ipa",
-         output_format: "xml",
-     )
+lane :upload_ipa_altool do
+    altool(
+        altool_app_type: "ios",
+        altool_ipa_path: "./build/Your-ipa.ipa",
+        altool_output_format: "xml",
+    )
+
+  end
 ```
 
 
