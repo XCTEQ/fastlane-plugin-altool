@@ -4,20 +4,19 @@ require_relative '../helper/altool_helper'
 module Fastlane
   module Actions
     class AltoolAction < Action
+      ALTOOL= File.expand_path('/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool')
+      puts ALTOOL
       def self.run(params)
-        altool_path = "/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool"
-        unless File.exist? altool_path
-          UI.user_error!("altool binary not found. Please check your Xcode installtion")
-        end
+        UI.message(" ----altool binary exists on your machine----- ")
 
         altool_app_type = params[:altool_app_type]
         altool_ipa_path = params[:altool_ipa_path]
         altool_username = params[:altool_username]
         altool_password = params[:altool_password]
         altool_output_format = params[:altool_output_format]
-
+        UI.message("========Validating and Uploading your ipa file to iTunes Connect=========")
         command = [
-          "/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool",
+          ALTOOL,
           '--upload-app',
           '-t',
           altool_app_type,
@@ -30,8 +29,8 @@ module Fastlane
           '--output-format',
           altool_output_format
         ]
-
         Actions.sh(command.join(' '))
+        UI.message("========It maight take so long time to fully upload your IPA files=========")
       end
 
       def self.description

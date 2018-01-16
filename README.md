@@ -12,23 +12,37 @@ This project is a [_fastlane_](https://github.com/fastlane/fastlane) plugin. To 
 fastlane add_plugin altool
 ```
 
+## Pre-requisite
+
+This plaugin has configurable Apple ID and password but you probably don't want to hardcode that. You need to have Fastlane setup with `FASTLANE_USER` and `FASTLANE_PASSWORD` environmenal varibales setup. Fastlane will ask it when you run `fastlane init` but if not you have to set these variables.
+
+You can set that easily for bash shell
+
+```
+$ export FASTLANE_USER="your_apple_id@yourcompany.com";
+$ export FASTLANE_PASSWORD="your_super_xecret_password";
+
+```
+
+You can do the same for your choice of shell if you aren't using bash.
+
+
 ## About altool
 
-Upload IPA to iTunes Connect using altool.
+This plugin can be used to upload IPA to iTunes Connect using altool.
 
 Currently Fastlane deliver uses iTMSTransporter to upload an ipa files to iTunes Connect but there is slick way to do this using `altool`
 
-This plugin can be used for uploading generated ipa file using Gym to iTunes Connect.
+This plugin can be used for uploading generated `ipa` file using Gym to iTunes Connect.
 
-This plugin assume that, you already have that Fastlane setup and your details are configured as ENV variables in FASTLANE_USER and FASTLANE_PASSWORD by default.
+This plugin assume that, you already have that Fastlane setup and your details are configured as ENV variables in `FASTLANE_USER` and `FASTLANE_PASSWORD` by default.
 
 
-## Example
+## Usage
 
 You can configure this plaugin using
 
 ```
-lane :upload_ipa_altool do
     altool(
         altool_username: ENV["FASTLANE_USER"],
         altool_password: ENV["FASTLANE_PASSWORD"],
@@ -37,9 +51,11 @@ lane :upload_ipa_altool do
         altool_output_format: "xml",
     )
 
-  end
 ```
 
+## Example Project Repo
+
+This is a example project [Altool-Demo](https://github.com/Shashikant86/Altool-Demo) available on Github which has its own README.
 
 ## Run tests for this plugin
 
