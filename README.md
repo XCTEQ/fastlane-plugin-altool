@@ -20,7 +20,7 @@ Currently Fastlane deliver uses iTMSTransporter to upload an ipa files to iTunes
 
 This plugin can be used for uploading generated ipa file using Gym to iTunes Connect.
 
-This plugin assume that, you already have that Fastlane setup and your details are configured as ENV variables in FASTLANE_USER and FASTLANE_PASSWORD
+This plugin assume that, you already have that Fastlane setup and your details are configured as ENV variables in FASTLANE_USER and FASTLANE_PASSWORD by default.
 
 
 ## Example
@@ -30,8 +30,8 @@ You can configure this plaugin using
 ```
 lane :upload_ipa_altool do
     altool(
-        altool_usename: ENV["FASTLANE_USER"],
-        altool_password: ENV["FASTLANE_PASSWORD"]
+        altool_username: ENV["FASTLANE_USER"],
+        altool_password: ENV["FASTLANE_PASSWORD"],
         altool_app_type: "ios",
         altool_ipa_path: "./build/Your-ipa.ipa",
         altool_output_format: "xml",

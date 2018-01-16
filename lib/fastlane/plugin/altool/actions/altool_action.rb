@@ -12,7 +12,7 @@ module Fastlane
 
         altool_app_type = params[:altool_app_type]
         altool_ipa_path = params[:altool_ipa_path]
-        altool_usename = params[:altool_username]
+        altool_username = params[:altool_username]
         altool_password = params[:altool_password]
         altool_output_format = params[:altool_output_format]
 
@@ -24,7 +24,7 @@ module Fastlane
           '-f',
           altool_ipa_path,
           '-u',
-          altool_usename,
+          altool_username,
           '-p',
           altool_password,
           '--output-format',
@@ -106,8 +106,8 @@ module Fastlane
 
       def self.example_code
         ['   altool(
-            altool_usename: ENV["FASTLANE_USER"],
-            altool_password: ENV["FASTLANE_PASSWORD"]
+            altool_username: ENV["FASTLANE_USER"],
+            altool_password: ENV["FASTLANE_PASSWORD"],
             altool_app_type: "ios",
             altool_ipa_path: "./build/Your-ipa.ipa",
             altool_output_format: "xml",
