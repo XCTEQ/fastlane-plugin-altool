@@ -30,6 +30,8 @@ You can configure this plaugin using
 ```
 lane :upload_ipa_altool do
     altool(
+        altool_usename: ENV["FASTLANE_USER"],
+        altool_password: ENV["FASTLANE_PASSWORD"]
         altool_app_type: "ios",
         altool_ipa_path: "./build/Your-ipa.ipa",
         altool_output_format: "xml",

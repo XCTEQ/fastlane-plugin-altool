@@ -12,8 +12,8 @@ module Fastlane
 
         altool_app_type = params[:altool_app_type]
         altool_ipa_path = params[:altool_ipa_path]
-        altool_usename = ENV["FASTLANE_USER"]
-        altool_password = ENV['FASTLANE_PASSWORD']
+        altool_usename = params[:altool_username]
+        altool_password = params[:altool_password]
         altool_output_format = params[:altool_output_format]
 
         command = [
@@ -72,6 +72,28 @@ module Fastlane
                                       UI.user_error!("'#{value}' doesn't seem to be an ipa file") unless value.end_with?(".ipa")
                                     end),
 
+          FastlaneCore::ConfigItem.new(key: :altool_username,
+                                    env_name: "ALTOOL_USERNAME",
+                                    description: "Your Apple ID for iTunes Connects. This usually FASTLANE_USER environmental variable",
+                                    is_string: true,
+                                    default_value: ENV["FASTLANE_USER"],
+                                    optional: false,
+                                    verify_block: proc do |value|
+                                      value = ENV["FASTLANE_USER"]
+                                      UI.user_error!("FASTLANE_USER environmental varibale is not set") if value.empty?
+                                    end),
+
+          FastlaneCore::ConfigItem.new(key: :altool_password,
+                                    env_name: "ALTOOL_PASSWORD",
+                                    description: "Your Apple ID Password for iTunes Connects. This usually FASTLANE_PASSWORD environmental variable",
+                                    is_string: true,
+                                    default_value: ENV["FASTLANE_PASSWORD"],
+                                    optional: false,
+                                    verify_block: proc do |value|
+                                      value = ENV["FASTLANE_PASSWORD"]
+                                      UI.user_error!("FASTLANE_PASSWORD environmental varibale is not set") if value.empty?
+                                    end),
+
           FastlaneCore::ConfigItem.new(key: :altool_output_format,
                                     env_name: "ALTOOL_OUTPUT_FORMAT",
                                     description: "Output formal xml or normal ",
@@ -84,10 +106,12 @@ module Fastlane
 
       def self.example_code
         ['   altool(
-                 app_type: "ios",
-                 ipa_path: "./build/Your-ipa.ipa",
-                 output_format: "xml",
-             )
+            altool_usename: ENV["FASTLANE_USER"],
+            altool_password: ENV["FASTLANE_PASSWORD"]
+            altool_app_type: "ios",
+            altool_ipa_path: "./build/Your-ipa.ipa",
+            altool_output_format: "xml",
+        )
        ']
       end
 
