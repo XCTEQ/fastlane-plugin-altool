@@ -5,8 +5,8 @@ module Fastlane
   module Actions
     class AltoolAction < Action
       def self.run(params)
-        altool_path("/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool")
-        unless File.exist?(altool_path)
+        altool_path = "/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool"
+        unless File.exist? altool_path
           UI.user_error!("altool binary not found. Please check your Xcode installtion")
         end
 
