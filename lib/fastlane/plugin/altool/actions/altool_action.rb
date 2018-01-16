@@ -10,11 +10,11 @@ module Fastlane
           UI.user_error!("altool binary not found. Please check your Xcode installtion")
         end
 
-        altool_app_type = params[:app_type]
-        altool_ipa_path = params[:ipa_path]
+        altool_app_type = params[:altool_app_type]
+        altool_ipa_path = params[:altool_ipa_path]
         altool_usename = ENV["FASTLANE_USER"]
         altool_password = ENV['FASTLANE_PASSWORD']
-        altool_output_format = params[:output_format]
+        altool_output_format = params[:altool_output_format]
 
         command = [
           "/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool",
@@ -72,7 +72,7 @@ module Fastlane
                                       UI.user_error!("'#{value}' doesn't seem to be an ipa file") unless value.end_with?(".ipa")
                                     end),
 
-          FastlaneCore::ConfigItem.new(key: :altool_app_type,
+          FastlaneCore::ConfigItem.new(key: :altool_output_format,
                                     env_name: "ALTOOL_OUTPUT_FORMAT",
                                     description: "Output formal xml or normal ",
                                     default_value: "normal",
