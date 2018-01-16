@@ -78,10 +78,7 @@ module Fastlane
                                     is_string: true,
                                     default_value: ENV["FASTLANE_USER"],
                                     optional: false,
-                                    verify_block: proc do |value|
-                                      value = ENV["FASTLANE_USER"]
-                                      UI.user_error!("FASTLANE_USER environmental varibale is not set") if value.empty?
-                                    end),
+                                    ),
 
           FastlaneCore::ConfigItem.new(key: :altool_password,
                                     env_name: "ALTOOL_PASSWORD",
@@ -89,10 +86,7 @@ module Fastlane
                                     is_string: true,
                                     default_value: ENV["FASTLANE_PASSWORD"],
                                     optional: false,
-                                    verify_block: proc do |value|
-                                      value = ENV["FASTLANE_PASSWORD"]
-                                      UI.user_error!("FASTLANE_PASSWORD environmental varibale is not set") if value.empty?
-                                    end),
+                                    ),
 
           FastlaneCore::ConfigItem.new(key: :altool_output_format,
                                     env_name: "ALTOOL_OUTPUT_FORMAT",
