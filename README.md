@@ -53,6 +53,10 @@ You can configure this plaugin using
 
 ```
 
+Security Note:  
+
+This might print the username and password to build console in the commands, pipe the output to ` /dev/null` or use similar approach so that fastlane don't print command to console.
+
 ## Example Project Repo
 
 This is a example project [Altool-Demo](https://github.com/Shashikant86/Altool-Demo) available on Github which has its own README.
