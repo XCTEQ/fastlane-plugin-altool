@@ -14,7 +14,7 @@ fastlane add_plugin altool
 
 ## Pre-requisite
 
-This plaugin has configurable Apple ID and password but you probably don't want to hardcode that. You need to have Fastlane setup with `FASTLANE_USER` and `FASTLANE_PASSWORD` environmenal varibales setup. Fastlane will ask it when you run `fastlane init` but if not you have to set these variables.
+This plugin has configurable Apple ID and password but you probably don't want to hardcode that. You need to have Fastlane setup with `FASTLANE_USER` and `FASTLANE_PASSWORD` environmenal varibales setup. Fastlane will ask it when you run `fastlane init` but if not you have to set these variables.
 
 You can set that easily for bash shell
 
@@ -40,7 +40,7 @@ This plugin assume that, you already have that Fastlane setup and your details a
 
 ## Usage
 
-You can configure this plaugin using
+You can configure this plugin using
 
 ```
     altool(
