@@ -21,7 +21,6 @@ You can set that easily for bash shell
 ```
 $ export FASTLANE_USER="your_apple_id@yourcompany.com";
 $ export FASTLANE_PASSWORD="your_super_xecret_password";
-
 ```
 
 You can do the same for your choice of shell if you aren't using bash.
@@ -42,7 +41,7 @@ This plugin assume that, you already have that Fastlane setup and your details a
 
 You can configure this plugin using
 
-```
+```ruby
     altool(
         altool_username: ENV["FASTLANE_USER"],
         altool_password: ENV["FASTLANE_PASSWORD"],
