@@ -12,8 +12,11 @@ module Fastlane
         altool_app_type = params[:altool_app_type]
         altool_ipa_path = params[:altool_ipa_path]
         altool_username = params[:altool_username]
-        altool_password = params[:altool_password]
         altool_output_format = params[:altool_output_format]
+
+        ENV["ALTOOL_PASSWORD"] = params[:altool_password]
+        altool_password = "@env:ALTOOL_PASSWORD"
+
         UI.message("========Validating and Uploading your ipa file to iTunes Connect=========")
         command = [
           ALTOOL,
