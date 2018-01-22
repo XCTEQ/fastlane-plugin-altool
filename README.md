@@ -58,7 +58,7 @@ This might print the username and password to build console in the commands, pip
 
 ## Example Project Repo
 
-This is a example project [Altool-Demo](https://github.com/Shashikant86/Altool-Demo) available on Github which has its own README.
+This is a example project [Altool-Demo](https://github.com/Shashikant86/Altool-Demo) available on GitHub which has its own README.
 
 ## Run tests for this plugin
 
