@@ -87,7 +87,7 @@ module Fastlane
                                     description: "Your Apple ID Password for iTunes Connects. This usually FASTLANE_PASSWORD environmental variable",
                                     is_string: true,
                                     default_value: ENV["FASTLANE_PASSWORD"],
-                                    optional: false,
+                                    optional: true,
                                     ),
 
           FastlaneCore::ConfigItem.new(key: :altool_output_format,
