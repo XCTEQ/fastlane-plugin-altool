@@ -10,7 +10,7 @@ module Fastlane
         UI.message(" ----altool binary exists on your machine----- ")
 
         altool_app_type = params[:altool_app_type]
-        altool_ipa_path = params[:altool_ipa_path]
+        altool_ipa_path = "\"#{params[:altool_ipa_path]}\""
         altool_username = params[:altool_username]
         altool_output_format = params[:altool_output_format]
 
