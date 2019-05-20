@@ -9,28 +9,28 @@ module Fastlane
       def self.run(params)
         UI.message(" ----altool binary exists on your machine----- ")
 
-        altool_app_type = params[:altool_app_type]
-        altool_ipa_path = "\"#{params[:altool_ipa_path]}\""
-        altool_username = params[:altool_username]
-        altool_output_format = params[:altool_output_format]
+        app_type = params[:app_type]
+        ipa_path = "\"#{params[:ipa_path]}\""
+        username = params[:username]
+        output_format = params[:output_format]
 
-        ENV["ALTOOL_PASSWORD"] = params[:altool_password]
-        altool_password = "@env:ALTOOL_PASSWORD"
+        ENV["ALTOOL_PASSWORD"] = params[:password]
+        password = "@env:ALTOOL_PASSWORD"
 
         UI.message("========Validating and Uploading your ipa file to iTunes Connect=========")
         command = [
           ALTOOL,
           '--upload-app',
           '-t',
-          altool_app_type,
+          app_type,
           '-f',
-          altool_ipa_path,
+          ipa_path,
           '-u',
-          altool_username,
+          username,
           '-p',
-          altool_password,
+          password,
           '--output-format',
-          altool_output_format
+          output_format
         ]
         Actions.sh(command.join(' '))
         UI.message("========It maight take so long time to fully upload your IPA files=========")
@@ -55,14 +55,14 @@ module Fastlane
 
       def self.available_options
         [
-          FastlaneCore::ConfigItem.new(key: :altool_app_type,
+          FastlaneCore::ConfigItem.new(key: :app_type,
                                     env_name: "ALTOOL_APP_TYPE",
                                     description: "Type or platform of application e.g osx, ios, appletvos ",
                                     default_value: "ios",
                                     is_string: true,
                                     optional: true),
 
-          FastlaneCore::ConfigItem.new(key: :altool_ipa_path,
+          FastlaneCore::ConfigItem.new(key: :ipa_path,
                                     env_name: "ALTOOL_IPA_PATH",
                                     description: "Path to IPA file ",
                                     is_string: true,
@@ -74,7 +74,7 @@ module Fastlane
                                       UI.user_error!("'#{value}' doesn't seem to be an ipa file") unless value.end_with?(".ipa")
                                     end),
 
-          FastlaneCore::ConfigItem.new(key: :altool_username,
+          FastlaneCore::ConfigItem.new(key: :username,
                                     env_name: "ALTOOL_USERNAME",
                                     description: "Your Apple ID for iTunes Connects. This usually FASTLANE_USER environmental variable",
                                     is_string: true,
@@ -82,7 +82,7 @@ module Fastlane
                                     optional: false,
                                     ),
 
-          FastlaneCore::ConfigItem.new(key: :altool_password,
+          FastlaneCore::ConfigItem.new(key: :password,
                                     env_name: "ALTOOL_PASSWORD",
                                     description: "Your Apple ID Password for iTunes Connects. This usually FASTLANE_PASSWORD environmental variable",
                                     is_string: true,
@@ -90,7 +90,7 @@ module Fastlane
                                     optional: true,
                                     ),
 
-          FastlaneCore::ConfigItem.new(key: :altool_output_format,
+          FastlaneCore::ConfigItem.new(key: :output_format,
                                     env_name: "ALTOOL_OUTPUT_FORMAT",
                                     description: "Output formal xml or normal ",
                                     default_value: "normal",
@@ -102,11 +102,11 @@ module Fastlane
 
       def self.example_code
         ['   altool(
-            altool_username: ENV["FASTLANE_USER"],
-            altool_password: ENV["FASTLANE_PASSWORD"],
-            altool_app_type: "ios",
-            altool_ipa_path: "./build/Your-ipa.ipa",
-            altool_output_format: "xml",
+            username: ENV["FASTLANE_USER"],
+            password: ENV["FASTLANE_PASSWORD"],
+            app_type: "ios",
+            ipa_path: "./build/Your-ipa.ipa",
+            output_format: "xml",
         )
        ']
       end
