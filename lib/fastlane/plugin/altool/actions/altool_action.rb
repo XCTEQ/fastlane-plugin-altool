@@ -4,9 +4,10 @@ require_relative '../helper/altool_helper'
 module Fastlane
   module Actions
     class AltoolAction < Action
-      ALTOOL= File.expand_path('/Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool')
-      puts ALTOOL
       def self.run(params)
+        altool = `xcrun -f altool`.chomp
+        UI.message("altool binary doesn't exist at path: #{altool}") unless File.exist?(altool)
+
         UI.message(" ----altool binary exists on your machine----- ")
 
         altool_app_type = params[:altool_app_type]
@@ -17,9 +18,9 @@ module Fastlane
         ENV["ALTOOL_PASSWORD"] = params[:altool_password]
         altool_password = "@env:ALTOOL_PASSWORD"
 
-        UI.message("========Validating and Uploading your ipa file to iTunes Connect=========")
+        UI.message("========Validating and Uploading your IPA file to iTunes Connect=========")
         command = [
-          ALTOOL,
+          altool,
           '--upload-app',
           '-t',
           altool_app_type,
@@ -33,7 +34,7 @@ module Fastlane
           altool_output_format
         ]
         Actions.sh(command.join(' '))
-        UI.message("========It maight take so long time to fully upload your IPA files=========")
+        UI.message("========It might take long time to fully upload your IPA file=========")
       end
 
       def self.description
@@ -50,7 +51,7 @@ module Fastlane
 
       def self.details
         # Optional:
-        "This plugin can be used for uploading ipa files to iTunes Connect using altool rahter than using ITMSTransporter.. Currently Fastlane deliver upload an ipa file using iTMSTransporter tool. There is another slick command line too called altool that can be used to upload ipa files as well"
+        "This plugin can be used for uploading ipa files to iTunes Connect using altool rather than using ITMSTransporter.. Currently Fastlane deliver upload an ipa file using iTMSTransporter tool. There is another slick command line too called altool that can be used to upload ipa files as well"
       end
 
       def self.available_options
@@ -79,16 +80,14 @@ module Fastlane
                                     description: "Your Apple ID for iTunes Connects. This usually FASTLANE_USER environmental variable",
                                     is_string: true,
                                     default_value: ENV["FASTLANE_USER"],
-                                    optional: false,
-                                    ),
+                                    optional: false),
 
           FastlaneCore::ConfigItem.new(key: :altool_password,
                                     env_name: "ALTOOL_PASSWORD",
                                     description: "Your Apple ID Password for iTunes Connects. This usually FASTLANE_PASSWORD environmental variable",
                                     is_string: true,
                                     default_value: ENV["FASTLANE_PASSWORD"],
-                                    optional: true,
-                                    ),
+                                    optional: true),
 
           FastlaneCore::ConfigItem.new(key: :altool_output_format,
                                     env_name: "ALTOOL_OUTPUT_FORMAT",
